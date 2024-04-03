@@ -28,9 +28,8 @@ const Navbar = () => {
 
     const navItems = [
         { link: "Home", path: "/" },
-        { link: "About", path: "/about" },
+
         { link: "Shop", path: "/shop" },
-        { link: "Blog", path: "/blog" },
         { link: "Sell Your Books", path: "/admin/dashboard/manageBooks" },
     ]
     return (

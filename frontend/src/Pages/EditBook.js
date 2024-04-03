@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import SideBar from '../Components/SideBar'
 import axios from 'axios'
 import { Button, Label, Select, TextInput, Textarea } from "flowbite-react";
+import { FaBackward } from "react-icons/fa6";
 
 const EditBook = () => {
     const { id } = useParams();
@@ -82,8 +83,14 @@ const EditBook = () => {
 
     return (
         <div className='flex'>
-            {/* <SideBar /> */}
+            <div className='hidden md:block'>
+                <SideBar />
+            </div>
+
             <div className='px-4 my-12'>
+                <div>
+                    <a href="/admin/dashboard/manageBooks" className=' md:hidden text-red-500 hover:text-blue-700 flex flex-row gap-2 mb-3'> <FaBackward className='mt-1' />Go Back</a>
+                </div>
                 <h2 className='mb-8 text-3xl font-bold'>Manage All The Books</h2>
                 <form className="lg:w-[1180px] flex flex-wrap gap-4 mt-8" onSubmit={handleUpdate} method="POST">
                     <div className="flex w-full gap-8">
