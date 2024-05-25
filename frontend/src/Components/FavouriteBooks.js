@@ -7,7 +7,7 @@ const FavouriteBooks = () => {
 
     const fetchBooks = async () => {
         try {
-            const response = await axios.get('https://bookstore-9kvi.onrender.com/api/books/all-books');
+            const response = await axios.get('http://localhost:5004/api/books/all-books');
             console.log(response.data);
             setBooks(response.data);
         } catch (error) {
