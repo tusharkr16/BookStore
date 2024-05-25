@@ -18,9 +18,6 @@ app.use('/api/books', bookRoutes);
 app.use('/api/userRoutes', userRoutes);
 app.use('/cart', cartRoutes);
 
-app.get('/', (req, res) => {
-    res.send('Hello from the server');
-})
 
 app.listen(PORT, () => {
     console.log(`server is listening at port ${PORT}`);
