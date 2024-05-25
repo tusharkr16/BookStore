@@ -40,7 +40,7 @@ const EditBook = () => {
     useEffect(() => {
         const fetchBook = async () => {
             try {
-                const { data } = await axios.get(`http://localhost:5000/api/books/${id}`);
+                const { data } = await axios.get(`http://localhost:5004/api/books/${id}`);
                 setBookData(data);
             } catch (error) {
                 console.error('Error fetching book data:', error);
@@ -74,7 +74,7 @@ const EditBook = () => {
                     "Content-type": "application/json",
                 }
             }
-            await axios.patch(`http://localhost:5000/api/books/${id}`, bookData, config);
+            await axios.patch(`http://localhost:5004/api/books/${id}`, bookData, config);
             console.log('Book data updated successfully:', bookData);
         } catch (error) {
             console.error('Error updating book data:', error);

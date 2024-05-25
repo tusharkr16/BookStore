@@ -58,7 +58,7 @@ const BookCard = ({ headline, books }) => {
                                     <p>{book.author}</p>
                                 </div>
                                 <div className='text-center'>
-                                    <p>$10.0</p>
+                                    <p>${book.price}</p>
                                 </div>
                             </Link>
 

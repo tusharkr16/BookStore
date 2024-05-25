@@ -43,8 +43,9 @@ const UploadBooks = () => {
         const category = formData.get('categoryName');
         const bookPDFUrl = formData.get('bookPDFUrl');
         const description = formData.get('description');
+        const price = formData.get('price')
         const bookObj = {
-            author, image, category, bookPDFUrl, bookTitle, description
+            author, image, category, bookPDFUrl, bookTitle, description, price
         }
         console.log(bookObj);
         try {
@@ -53,7 +54,7 @@ const UploadBooks = () => {
                     "Content-type": "application/json",
                 }
             }
-            const response = axios.post('http://localhost:5000/api/books', bookObj,
+            const response = axios.post('http://localhost:5004/api/books', bookObj,
                 config
             );
             <Alert Alert color="success" onDismiss={() => alert('Alert dismissed!')} >
@@ -91,6 +92,12 @@ const UploadBooks = () => {
                                 <TextInput id="author" type="text" placeholder="eg: Chetan Bhagat" name='author' required />
                             </div>
                         </div>
+                        <div className="flex w-full gap-8">
+                            <div className='w-1/2'>
+                                <Label htmlFor="price" value="price" />
+                                <TextInput id="price" type="number" placeholder="Price" name='price' required />
+                            </div>
+                        </div>
 
                         <div className="flex w-full gap-8 mt-8">
                             <div className='w-1/2'>
@@ -103,6 +110,7 @@ const UploadBooks = () => {
                                     {bookCategories.map(option => <option key={option} value={option}>{option}</option>)}
                                 </Select>
                             </div>
+
                         </div>
 
                         <div className="flex w-full gap-8 mt-8">
