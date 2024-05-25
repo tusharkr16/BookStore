@@ -29,6 +29,10 @@ const bookSchema = mongoose.Schema({
     bookPDFUrl: {
         type: String,
         required: true,
+    },
+    price: {
+        type: Number,
+        required: true,
     }
 },
     {

@@ -2,13 +2,13 @@ const asyncHandler = require('express-async-handler');
 const BookUpload = require('../models/booksModel');
 
 const uploadBooks = asyncHandler(async (req, res) => {
-    const { author, image, category, description, bookTitle, bookPDFUrl } = req.body;
-    if (!author || !image || !category || !description || !bookTitle || !bookPDFUrl) {
+    const { author, image, category, description, bookTitle, bookPDFUrl, price } = req.body;
+    if (!author || !image || !category || !description || !bookTitle || !bookPDFUrl || !price) {
         res.status(400)
         throw new Error("Please Fill all the fields");
     }
     else {
-        const data = new BookUpload({ author, image, category, description, bookTitle, bookPDFUrl });
+        const data = new BookUpload({ author, image, category, description, bookTitle, bookPDFUrl, price });
         const createdUpload = await data.save();
 
         res.status(201).json(createdUpload);
@@ -44,7 +44,7 @@ const getBookById = asyncHandler(async (req, res) => {
 })
 
 const updateBook = asyncHandler(async (req, res) => {
-    const { author, image, category, description, bookTitle, bookPDFUrl } = req.body;
+    const { author, image, category, description, bookTitle, bookPDFUrl, price } = req.body;
     const bookId = req.params.id;
 
     try {
@@ -69,6 +69,7 @@ const updateBook = asyncHandler(async (req, res) => {
         existingBook.description = description;
         existingBook.bookTitle = bookTitle;
         existingBook.bookPDFUrl = bookPDFUrl;
+        existingBook.price = price;
 
 
         const updatedBook = await existingBook.save();
