@@ -18,7 +18,7 @@ const Login = () => {
                     "Content-type": "application/json"
                 }
             }
-            const { data } = await axios.post('http://localhost:5004/api/userRoutes/all-users', { email, password }, config)
+            const { data } = await axios.post('https://bookstore-9kvi.onrender.com/api/userRoutes/all-users', { email, password }, config)
             console.log(data);
             localStorage.setItem('userInfo', JSON.stringify(data));
             Navigate('/shop');

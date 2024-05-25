@@ -29,7 +29,7 @@ const Cart = () => {
             };
 
             try {
-                const response = await axios.get('http://localhost:5004/cart/cart-items', config);
+                const response = await axios.get('https://bookstore-9kvi.onrender.com/cart/cart-items', config);
                 setCartItems(response.data);
                 console.log(response.data);
             } catch (error) {
@@ -51,7 +51,7 @@ const Cart = () => {
                     Authorization: `Bearer ${userInfo.token}`
                 }
             };
-            await axios.delete(`http://localhost:5004/cart/${itemId}`, config);
+            await axios.delete(`https://bookstore-9kvi.onrender.com/cart/${itemId}`, config);
             setCartItems(cartItems.filter(item => item._id !== itemId));
         } catch (error) {
             console.error('Error removing item from cart:', error);
@@ -72,7 +72,7 @@ const Cart = () => {
             const totalPrice = getTotalPrice() * 100;
             console.log(totalPrice);
 
-            const res = await axios.post('http://localhost:5004/cart/payment', {
+            const res = await axios.post('https://bookstore-9kvi.onrender.com/cart/payment', {
                 items: cartItems.map(item => ({
                     id: item.productId._id,
                     name: item.productId.bookTitle,
@@ -84,7 +84,7 @@ const Cart = () => {
 
             const data = res.data;
             console.log(data);
-            await axios.delete('http://localhost:5004/cart/cart-items', config);
+            await axios.delete('https://bookstore-9kvi.onrender.com/cart/cart-items', config);
             window.location = data.url;
         } catch (error) {
             console.log(error);
@@ -115,7 +115,7 @@ const Cart = () => {
         }
 
         try {
-            await axios.put(`http://localhost:5004/cart/${itemId}`, { quantity: newQty }, config);
+            await axios.put(`https://bookstore-9kvi.onrender.com/${itemId}`, { quantity: newQty }, config);
         } catch (error) {
             console.error('Error updating item quantity:', error);
             setCartItems(cartItems);

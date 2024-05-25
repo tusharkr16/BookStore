@@ -34,7 +34,7 @@ const Register = () => {
                     "Content-type": "application/json",
                 }
             }
-            const response = axios.post('http://localhost:5004/api/userRoutes', formData, config);
+            const response = axios.post('https://bookstore-9kvi.onrender.com/api/userRoutes', formData, config);
             <Alert Alert color="success" onDismiss={() => alert('Alert dismissed!')} >
                 <span className="font-medium">Registrer Successful</span>
             </Alert >
