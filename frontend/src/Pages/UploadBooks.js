@@ -54,7 +54,7 @@ const UploadBooks = () => {
                     "Content-type": "application/json",
                 }
             }
-            const response = axios.post('http://localhost:5004/api/books', bookObj,
+            const response = axios.post('https://bookstore-i6jo.onrender.com/api/books', bookObj,
                 config
             );
             <Alert Alert color="success" onDismiss={() => alert('Alert dismissed!')} >

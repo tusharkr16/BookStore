@@ -11,7 +11,7 @@ const Shop = () => {
     const [token, setToken] = useState('');
     const fetchBooks = async () => {
         try {
-            const response = await axios.get('http://localhost:5004/api/books/all-books');
+            const response = await axios.get('https://bookstore-i6jo.onrender.com/api/books/all-books');
             setBooks(response.data);
             console.log(response);
         } catch (error) {
@@ -42,7 +42,7 @@ const Shop = () => {
                         Authorization: `Bearer ${token}`
                     }
                 }
-                const response = await axios.post('http://localhost:5004/cart', { productId: bookId, quantity: 1 }, config);
+                const response = await axios.post('https://bookstore-i6jo.onrender.com/cart', { productId: bookId, quantity: 1 }, config);
                 if (response.status === 201) {
                     enqueueSnackbar('Added to Cart', { variant: 'success' });
                 }
@@ -51,7 +51,7 @@ const Shop = () => {
                 }
             } catch (error) {
                 console.error('Cart Error:', error);
-                enqueueSnackbar('Add to cart failed. Please try again.', { variant: 'error' });
+                // enqueueSnackbar('Add to cart failed. Please try again.', { variant: 'error' });
             }
 
         }
