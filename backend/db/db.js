@@ -5,5 +5,6 @@ const DB = "mongodb+srv://tusharkumar9871:XUT934rimcNC2WOq@cluster0.hmpr2hk.mong
 mongoose.connect(DB).then(() => {
     console.log('connection successful with db');
 }).catch((err) => {
-    console.log('error in connection with db')
+    console.log('error in connection with db');
+    console.log(err);
 })
