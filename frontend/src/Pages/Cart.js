@@ -84,7 +84,7 @@ const Cart = () => {
 
             const data = res.data;
             console.log(data);
-            await axios.delete('https://bookstore-9kvi.onrender.com/cart/cart-items', config);
+            await axios.delete('https://bookstore-i6jo.onrender.com/cart/cart-items', config);
             window.location = data.url;
         } catch (error) {
             console.log(error);
