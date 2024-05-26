@@ -19,39 +19,34 @@ const addToCart = asyncHandler(async (req, res) => {
     console.log(req.user);
 
     if (!req.user) {
-        res.status(401);
-        throw new Error("Not authorized, user not found");
+        return res.status(401).json({ message: "Not authorized, user not found" });
     }
 
     if (!productId) {
-        res.status(400);
-        throw new Error("Please fill all the fields");
+        return res.status(400).json({ message: "Please fill all the fields" });
     }
 
-    // Check if the product is already in the cart for the user
     const existingCartItem = await Cart.findOne({ user: req.user._id, productId });
 
     if (existingCartItem) {
-        res.status(420).json({ message: "Product already in cart" });
-    } else {
-        // Create a new cart item
-        const cartItem = new Cart({ user: req.user._id, productId, quantity });
-        const createdCartItem = await cartItem.save();
-        res.status(201).json(createdCartItem);
+        return res.status(420).json({ message: "Product already in cart" });
     }
+
+    const cartItem = new Cart({ user: req.user._id, productId, quantity });
+    const createdCartItem = await cartItem.save();
+    res.status(201).json(createdCartItem);
 });
+
 
 const deleteItemInCart = asyncHandler(async (req, res) => {
     const cartItemId = req.params.id;
     try {
         const existingItem = await Cart.findById(cartItemId);
         if (!existingItem) {
-            res.status(404);
-            throw new Error("Item not found");
+            return res.status(404).json({ message: "Item not found" });
         }
         if (existingItem._id.toString() !== cartItemId) {
-            res.status(401);
-            throw new Error("Item ID does not match");
+            return res.status(401).json({ message: "Item ID does not match" });
         }
         await existingItem.deleteOne();
         res.send("Item deleted");
@@ -59,6 +54,7 @@ const deleteItemInCart = asyncHandler(async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 });
+
 
 const clear = asyncHandler(async (req, res) => {
     console.log("from clearCart", req.user);
